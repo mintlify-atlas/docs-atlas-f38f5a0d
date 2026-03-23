@@ -1,0 +1,129 @@
+{
+  "projectType": "framework",
+  "projectName": "ForgeOAgent",
+  "projectDescription": "A modular Python framework for building, managing, and running AI agents powered by Google Gemini, with CLI, web API, and extensible tool/prompt plugin system.",
+  "theme": "palm",
+  "primaryColor": "#5B4CF5",
+  "lightColor": "#EDE9FE",
+  "darkColor": "#2D1FA3",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "installation"
+            ]
+          },
+          {
+            "group": "Core Concepts",
+            "pages": [
+              "concepts/architecture",
+              "concepts/inquirer-mode",
+              "concepts/executor-mode",
+              "concepts/agent-management"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "guides/system-prompts",
+              "guides/custom-tools",
+              "guides/gemini-client",
+              "guides/web-server",
+              "guides/shortcuts"
+            ]
+          },
+          {
+            "group": "Configuration",
+            "pages": [
+              "configuration/environment",
+              "configuration/api-keys"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "CLI Reference",
+        "groups": [
+          {
+            "group": "Commands",
+            "pages": [
+              "cli/overview",
+              "cli/prompt",
+              "cli/execute",
+              "cli/executors",
+              "cli/inquirers",
+              "cli/server",
+              "cli/config",
+              "cli/shortcut"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Web API",
+            "pages": [
+              "api/overview",
+              "api/process",
+              "api/agents",
+              "api/system-instructions",
+              "api/content-images"
+            ]
+          },
+          {
+            "group": "Python API",
+            "pages": [
+              "python-api/gemini-client",
+              "python-api/executor-controller",
+              "python-api/inquirer-controller"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Dual agent modes: Inquirer (quick tasks via system prompts) and Executor (advanced code-generating workflows)",
+    "Auto-discovery of system prompts from mcp/system_prompts/ — any *_SYSTEM_INSTRUCTION constant is auto-registered",
+    "Auto-discovery of MCP tools from mcp/tools/ — Python classes are auto-exposed as agent capabilities",
+    "Persistent agent/conversation management via AgentManager with JSONL logging",
+    "FastAPI web server with password and API-key authentication, rate limiting, and a built-in UI",
+    "Cross-platform CLI (forgeoagent) supporting prompt, execute, server, shortcut, and config commands",
+    "Built-in system prompts: code analysis, README generation, prompt enhancement, email generation, translation, and more",
+    "Google Gemini integration with multi-key rotation and structured JSON output support"
+  ],
+  "publicApiSurface": [
+    "GeminiAPIClient (forgeoagent.clients.gemini_engine)",
+    "GeminiAPIClient.generate_content(user_request) -> Dict",
+    "GeminiAPIClient.search_content(query) -> str",
+    "create_master_executor(api_keys, user_request, ...) -> Dict (forgeoagent.controller.executor_controller)",
+    "save_last_executor(agent_name) -> str (forgeoagent.controller.executor_controller)",
+    "print_available_executors() (forgeoagent.controller.executor_controller)",
+    "inquirer_using_selected_system_instructions(input_text, api_keys, prompt_agent, ...) (forgeoagent.controller.inquirer_controller)",
+    "auto_import_inquirers(package_path) (forgeoagent.controller.inquirer_controller)",
+    "print_available_inquirers() (forgeoagent.controller.inquirer_controller)",
+    "POST /api/process — process prompt with server-side API keys",
+    "POST /api/process-with-key — process prompt with user-supplied API key",
+    "POST /api/content-images-with-key — fetch content images",
+    "GET /api/prompt-types — list available prompt types",
+    "GET /api/agents — list saved agents",
+    "GET /api/system-instructions — list available system instructions",
+    "POST /api/save-agent — save last executor as named agent",
+    "GET /health — health check",
+    "CLI: forgeoagent prompt <text> --inquirer <type>",
+    "CLI: forgeoagent execute <prompt_text> --agent <name>",
+    "CLI: forgeoagent server --host --port --reload",
+    "CLI: forgeoagent executors",
+    "CLI: forgeoagent inquirers",
+    "CLI: forgeoagent config",
+    "CLI: forgeoagent shortcut"
+  ]
+}
